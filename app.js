@@ -9,17 +9,12 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const employees = []
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-
-function uniqueQuestion(employee) {
-  //  unique question depending on employee type
-  
-}
-
-async function main() {
+async function takeInfo() {
   // loop to take in employee info until no more team members to add
   let another = true;
   while(another) {
@@ -58,6 +53,7 @@ async function main() {
             name: 'officeNum',
             message: "What is the manager's Office Number?"
           })
+          employees.push(new Manager(name, ID, email, officeNum))
           break
         case "Engineer":
           const {github} = await inquirer.prompt({
@@ -65,6 +61,7 @@ async function main() {
             name: 'github',
             message: "What is the engineer's github?"
           })
+          employees.push(new Engineer(name, ID, email, github))
           break
         case "Intern":
           const {school} = await inquirer.prompt({
@@ -72,28 +69,28 @@ async function main() {
             name: 'school',
             message: "What is the intern's school?"
           })
+          employees.push(new Intern(name, ID, email, school))
           break
       }
     } else {
       another = false;
     }
   }
-  // inquirer.prompt(questions("intern")).then()
+}
+
+async function main() {
+
+  await takeInfo();
+  console.log(employees)
+
+  // After the user has input all employees desired, call the `render` function (required above) and pass in an array containing all employee objects; the `render` function will generate and return a block of HTML including templated divs for each employee!
+  const skeleton = render(employees);
+  console.log(skeleton)
 }
 
 main()
 
 
-// const manager = new Manager(managerName, managerID, managerEmail, managerOfficeNum)
-
-
-
-
-
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
