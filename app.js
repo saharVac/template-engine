@@ -14,79 +14,79 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-// take in manager info
-const managerQuestions = [
-  {
-    type: 'input',
-    name: 'managerName',
-    message: "What is the manager's name?"
-  },
-  {
-    type: 'input',
-    name: 'managerID',
-    message: "What is the manager's ID?"
-  }, 
-  {
-    type: 'input',
-    name: 'managerEmail',
-    message: "What is the manager's email?"
-  },
-  {
-    type: 'input',
-    name: 'managerOfficeNum',
-    message: "What is the manager's Office Number?"
-  }
-];
+function uniqueQuestion(employee) {
+  //  unique question depending on employee type
+  
+}
 
-const engineerQuestions = [
-  {
-    type: 'input',
-    name: 'engineerName',
-    message: "What is the engineer's name?"
-  },
-  {
-    type: 'input',
-    name: 'engineerID',
-    message: "What is the engineer's ID?"
-  }, 
-  {
-    type: 'input',
-    name: 'engineerEmail',
-    message: "What is the engineer's email?"
-  },
-  {
-    type: 'input',
-    name: 'github',
-    message: "What is the engineer's github?"
+async function main() {
+  // loop to take in employee info until no more team members to add
+  let another = true;
+  while(another) {
+    // ask what kind of employee to add if any
+    const {employee: employee} = await inquirer.prompt({
+      type: 'list',
+      name: 'employee',
+      message: "What type of member would you like to add?",
+      choices: ['Manager', 'Engineer', 'Intern', 'None']
+    })
+    // if None wasn't chosen work, else exit info entry loop
+    if (employee !== 'None') {
+      // ask for name, Id, and email
+      const {name, ID, email} = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'name',
+          message: `What is the ${employee}'s name?`
+        },
+        {
+          type: 'input',
+          name: 'ID',
+          message: `What is the ${employee}'s ID?`
+        }, 
+        {
+          type: 'input',
+          name: 'email',
+          message: `What is the ${employee}'s email?`
+        }
+      ])
+      // Ask for unique info
+      switch(employee) {
+        case "Manager":
+          const {officeNum} = await inquirer.prompt({
+            type: 'input',
+            name: 'officeNum',
+            message: "What is the manager's Office Number?"
+          })
+          break
+        case "Engineer":
+          const {github} = await inquirer.prompt({
+            type: 'input',
+            name: 'github',
+            message: "What is the engineer's github?"
+          })
+          break
+        case "Intern":
+          const {school} = await inquirer.prompt({
+            type: 'input',
+            name: 'school',
+            message: "What is the intern's school?"
+          })
+          break
+      }
+    } else {
+      another = false;
+    }
   }
-];
+  // inquirer.prompt(questions("intern")).then()
+}
 
-const internQuestions = [
-  {
-    type: 'input',
-    name: 'internName',
-    message: "What is the intern's name?"
-  },
-  {
-    type: 'input',
-    name: 'internID',
-    message: "What is the intern's ID?"
-  }, 
-  {
-    type: 'input',
-    name: 'internEmail',
-    message: "What is the intern's email?"
-  },
-  {
-    type: 'input',
-    name: 'school',
-    message: "What is the intern's school?"
-  }
-];
+main()
+
 
 // const manager = new Manager(managerName, managerID, managerEmail, managerOfficeNum)
 
-// loop to take in employee info until no more team members to add
+
 
 
 
