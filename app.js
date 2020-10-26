@@ -14,6 +14,83 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+// take in manager info
+const managerQuestions = [
+  {
+    type: 'input',
+    name: 'managerName',
+    message: "What is the manager's name?"
+  },
+  {
+    type: 'input',
+    name: 'managerID',
+    message: "What is the manager's ID?"
+  }, 
+  {
+    type: 'input',
+    name: 'managerEmail',
+    message: "What is the manager's email?"
+  },
+  {
+    type: 'input',
+    name: 'managerOfficeNum',
+    message: "What is the manager's Office Number?"
+  }
+];
+
+const engineerQuestions = [
+  {
+    type: 'input',
+    name: 'engineerName',
+    message: "What is the engineer's name?"
+  },
+  {
+    type: 'input',
+    name: 'engineerID',
+    message: "What is the engineer's ID?"
+  }, 
+  {
+    type: 'input',
+    name: 'engineerEmail',
+    message: "What is the engineer's email?"
+  },
+  {
+    type: 'input',
+    name: 'github',
+    message: "What is the engineer's github?"
+  }
+];
+
+const internQuestions = [
+  {
+    type: 'input',
+    name: 'internName',
+    message: "What is the intern's name?"
+  },
+  {
+    type: 'input',
+    name: 'internID',
+    message: "What is the intern's ID?"
+  }, 
+  {
+    type: 'input',
+    name: 'internEmail',
+    message: "What is the intern's email?"
+  },
+  {
+    type: 'input',
+    name: 'school',
+    message: "What is the intern's school?"
+  }
+];
+
+// const manager = new Manager(managerName, managerID, managerEmail, managerOfficeNum)
+
+// loop to take in employee info until no more team members to add
+
+
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
