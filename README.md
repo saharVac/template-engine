@@ -5,6 +5,8 @@
   ## Description
   A Node CLI taking employee information to dynamically generate an HTML page displaying a summary for each employee
 
+  ## Languages
+  JavaScript, HTML
 
   ## Table of Contents
   - [Installation](#Installation)
